@@ -98,6 +98,7 @@ export default function FormMonitoring({ handleReturn }) {
             status_monitoring: statusPantauan,
             updated_by: pelapor,
             updated_at: now,
+            keterangan: keterangan,
           }),
         });
 

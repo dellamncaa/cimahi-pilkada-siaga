@@ -46,7 +46,7 @@ export default function SuperadminMonitoring() {
   }, [searchTerm, statusFilter]);
 
   const handleSendHelp = async (locationId) => {
-    const adminName = "Admin"; 
+    const adminName = "Admin";
     const now = new Date().toISOString();
     try {
       await fetch("/api/update-tps-admin", {
@@ -294,21 +294,25 @@ export default function SuperadminMonitoring() {
                             : ""}
                         </span>
                       </div>
-                      <p className="mt-2 text-sm text-red-700">
-                        {location.issue}
-                      </p>
+                      {location.keterangan ? (
+                        <p className="mt-2 text-sm text-red-700">
+                          {location.keterangan}
+                        </p>
+                      ) : (
+                        ""
+                      )}
                       <div className="mt-3 text-xs text-red-600">
-                        {location.kec}
+                        {location.desa}
                       </div>
                       <div className="mt-1 text-xs text-red-600">
-                        Dilaporkan oleh: {location.update_by}
+                        Dilaporkan oleh: {location.updated_by}
                       </div>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleSendHelp(location.id);
                         }}
-                        className="mt-4 w-full px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                        className="mt-4 w-full px-4 py-2 bg-indigo-900 text-white text-sm font-medium rounded-lg hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                       >
                         Kirim Bantuan
                       </button>
@@ -357,7 +361,7 @@ export default function SuperadminMonitoring() {
                       value={searchTerm}
                       onChange={(e) => {
                         setSearchTerm(e.target.value);
-                        setCurrentPage(1); 
+                        setCurrentPage(1);
                       }}
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -382,7 +386,7 @@ export default function SuperadminMonitoring() {
                     value={statusFilter}
                     onChange={(e) => {
                       setStatusFilter(e.target.value);
-                      setCurrentPage(1); 
+                      setCurrentPage(1);
                     }}
                   >
                     <option value="">Semua Status</option>
@@ -623,7 +627,9 @@ export default function SuperadminMonitoring() {
                       Sebelumnya
                     </button>
                     {[
-                      ...Array(Math.ceil(filteredLocations.length / itemsPerPage)),
+                      ...Array(
+                        Math.ceil(filteredLocations.length / itemsPerPage)
+                      ),
                     ].map((_, index) => {
                       const pageNumber = index + 1;
                       if (
@@ -652,7 +658,10 @@ export default function SuperadminMonitoring() {
                         pageNumber === currentPage + 2
                       ) {
                         return (
-                          <span key={pageNumber} className="px-2 py-2 text-gray-500">
+                          <span
+                            key={pageNumber}
+                            className="px-2 py-2 text-gray-500"
+                          >
                             ...
                           </span>
                         );

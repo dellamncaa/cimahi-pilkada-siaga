@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { id_tps, status_monitoring, updated_by, updated_at } = await request.json();
+    const { id_tps, status_monitoring, updated_by, updated_at, keterangan } = await request.json();
 
     if (!id_tps) {
       console.error('Missing id_tps:', id_tps);
@@ -17,6 +17,10 @@ export async function POST(request) {
       console.error('Invalid updated_by:', updated_by);
       return NextResponse.json({ error: 'updated_by is required and must be a non-empty string' }, { status: 400 });
     }
+    if (!keterangan || keterangan.trim() === '') {
+      console.error('Invalid keterangan:', keterangan);
+      return NextResponse.json({ error: 'keterangan is required and must be a non-empty string' }, { status: 400 });
+    }
 
     const tpsRef = db.collection('tps-monitoring').doc(String(id_tps));
     const tpsDoc = await tpsRef.get();
@@ -27,6 +31,7 @@ export async function POST(request) {
     }
 
     const updateData = {
+      keterangan,
       status_monitoring,
       updated_by: updated_by.trim(),
       updated_at: updated_at || new Date().toISOString()
