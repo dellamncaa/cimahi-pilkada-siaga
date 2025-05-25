@@ -2,7 +2,7 @@
 
 **Sistem WebGIS Interaktif untuk Pemantauan Lapangan (Kebencanaan), Logistik, dan Quick Count Pilkada Kota Cimahi**
 
-![WebGIS Pilkada Cimahi](https://your-screenshot-or-logo-url.com) <!-- opsional gambar ilustrasi jika ada -->
+[WebGIS Pilkada Cimahi](https://your-screenshot-or-logo-url.com)
 
 ## 📌 Deskripsi Proyek
 
