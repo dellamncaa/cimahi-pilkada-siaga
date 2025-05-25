@@ -340,7 +340,7 @@ const createTpsPopupContent = (props, geoJsonData = null, tpsCoords = null) => {
     }
 
     .search-facilities-btn {
-      background: linear-gradient(135deg, #74b9ff, #0984e3);
+      background: linear-gradient(135deg, #1A237E, #1565C0);
       color: white;
     }
 
@@ -600,8 +600,8 @@ const createTpsPopupContent = (props, geoJsonData = null, tpsCoords = null) => {
         <div class="popup-section">
           <div class="popup-subtitle">👥 Data Pemilih</div>
           <div class="stats-grid">
-            <div class="stat-card">
-              <div class="popup-entry" style="margin: 0; padding: 0; background: none;">
+            <div class="popup-entry">
+              <div style="margin: 0; padding: 0; background: none;">
                 <span class="emoji">👨</span>
                 <div>
                   <div style="font-weight: 600;">Laki-laki</div>
@@ -612,8 +612,8 @@ const createTpsPopupContent = (props, geoJsonData = null, tpsCoords = null) => {
               </div>
             </div>
             
-            <div class="stat-card">
-              <div class="popup-entry" style="margin: 0; padding: 0; background: none;">
+            <div class="popup-entry">
+              <div style="margin: 0; padding: 0; background: none;">
                 <span class="emoji">👩</span>
                 <div>
                   <div style="font-weight: 600;">Perempuan</div>

@@ -80,10 +80,10 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="flex px-8 flex-col md:flex-row items-center justify-between gap-8">
               <div className="text-white max-w-2xl">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4">
+                <h1 className="text-2xl md:text-5xl font-bold mb-4">
                   Selamat Datang di
                 </h1>
-                <h1 className="text-3xl md:text-5xl font-bold mb-4">
+                <h1 className="text-2xl md:text-5xl font-bold mb-4">
                   Cimahi Pilkada Siaga
                 </h1>
                 <p className="text-lg md:text-xl mb-8 text-blue-100">
