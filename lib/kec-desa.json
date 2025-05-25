@@ -1,0 +1,18 @@
+[
+    { "id": 1, "kode_kec": 3173, "kec": "CIMAHI SELATAN", "kode_desa": 39501, "desa": "MELONG" },
+    { "id": 2, "kode_kec": 3173, "kec": "CIMAHI SELATAN", "kode_desa": 39505, "desa": "CIBEBER" },
+    { "id": 3, "kode_kec": 3173, "kec": "CIMAHI SELATAN", "kode_desa": 39502, "desa": "CIBEUREUM" },
+    { "id": 4, "kode_kec": 3173, "kec": "CIMAHI SELATAN", "kode_desa": 39503, "desa": "UTAMA" },
+    { "id": 5, "kode_kec": 3173, "kec": "CIMAHI SELATAN", "kode_desa": 39504, "desa": "LEUWIGAJAH" },
+    { "id": 6, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39506, "desa": "BAROS" },
+    { "id": 7, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39507, "desa": "CIGUGUR TENGAH" },
+    { "id": 8, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39511, "desa": "CIMAHI" },
+    { "id": 9, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39508, "desa": "KARANGMEKAR" },
+    { "id": 10, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39509, "desa": "SETIAMANAH" },
+    { "id": 11, "kode_kec": 3174, "kec": "CIMAHI TENGAH", "kode_desa": 39510, "desa": "PADASUKA" },
+    { "id": 12, "kode_kec": 3175, "kec": "CIMAHI UTARA", "kode_desa": 39512, "desa": "PASIRKALIKI" },
+    { "id": 13, "kode_kec": 3175, "kec": "CIMAHI UTARA", "kode_desa": 39513, "desa": "CIBABAT" },
+    { "id": 14, "kode_kec": 3175, "kec": "CIMAHI UTARA", "kode_desa": 39514, "desa": "CITEUREUP" },
+    { "id": 15, "kode_kec": 3175, "kec": "CIMAHI UTARA", "kode_desa": 39515, "desa": "CIPAGERAN" }
+  ]
+  
