@@ -15,6 +15,7 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./Map.module.css";
+import GeoTIFFLayer from "./GeoTIFFLayer";
 
 L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.7.1/dist/images/";
 
@@ -25,9 +26,7 @@ const Legend = () => {
     if (!map) return;
 
     const legend = L.control({ position: "bottomright" });
-    const div = L.DomUtil.create("div", "map-legend");
-
-    legend.onAdd = () => {
+    const div = L.DomUtil.create("div", "map-legend");    legend.onAdd = () => {
       div.innerHTML = `
         <div class="legend-item">
           <div class="legend-circle" style="background-color: #ef4444;"></div>
@@ -44,6 +43,15 @@ const Legend = () => {
         <div class="legend-item">
           <div class="legend-point" style="background-color: #3b82f6;"></div>
           <span>Sudah Ditangani</span>
+        </div>
+        <div class="legend-separator"></div>
+        <div class="legend-title">Tingkat Kerawanan</div>
+        <div class="legend-gradient">
+          <div class="gradient-bar"></div>
+          <div class="gradient-labels">
+            <span>Rendah</span>
+            <span>Tinggi</span>
+          </div>
         </div>
       `;
       return div;
@@ -103,6 +111,8 @@ export default function Map({
 }) {
   const defaultCenter = [-6.8718189, 107.5413039];
   const [geojson, setGeojson] = useState(null);
+
+  const geoTiffUrl = "/kerawanan.tif";
 
   useEffect(() => {
     fetch("/cimahi.geojson")
@@ -191,7 +201,6 @@ export default function Map({
               subdomains={["mt0", "mt1", "mt2", "mt3"]}
             />
           </LayersControl.BaseLayer>
-
           <LayersControl.Overlay checked name="TPS Aman">
             <LayerGroup>
               {markerCoordinates
@@ -308,7 +317,6 @@ export default function Map({
                 ))}
             </LayerGroup>
           </LayersControl.Overlay>
-
           <LayersControl.Overlay checked name="TPS Butuh Bantuan">
             <LayerGroup>
               {markerCoordinates
@@ -429,7 +437,6 @@ export default function Map({
                 ))}
             </LayerGroup>
           </LayersControl.Overlay>
-
           <LayersControl.Overlay checked name="TPS Sudah Ditangani">
             <LayerGroup>
               {markerCoordinates
@@ -546,7 +553,6 @@ export default function Map({
                 ))}
             </LayerGroup>
           </LayersControl.Overlay>
-
           <LayersControl.Overlay name="TPS Histori Rawan">
             <LayerGroup>
               {markerCoordinates
@@ -614,6 +620,13 @@ export default function Map({
                 ))}
             </LayerGroup>
           </LayersControl.Overlay>
+
+          <LayersControl.Overlay name="Heatmap Kerawanan">
+            <LayerGroup>
+              <GeoTIFFLayer url={geoTiffUrl} />
+            </LayerGroup>
+          </LayersControl.Overlay>
+
         </LayersControl>
 
         <Legend />
