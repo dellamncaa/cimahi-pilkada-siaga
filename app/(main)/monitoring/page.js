@@ -323,7 +323,7 @@ export default function MonitoringPage() {
       </div>
 
       <div className="w-full max-w-8xl mx-auto rounded-2xl flex flex-col items-center justify-center px-8 my-8">
-        <div className="w-full shadow-lg h-[350px] sm:h-[400px] md:h-[500px]">
+        <div className="w-full shadow-lg h-[500px] sm:h-[400px] md:h-[600px]">
           <Map
             locations={locations}
             selectedLocation={null}
