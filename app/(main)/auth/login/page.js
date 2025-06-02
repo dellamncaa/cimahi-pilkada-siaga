@@ -28,15 +28,12 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // Role Superadmin validation
       if (role === 'superadmin' && formData.email !== 'superadmin@gmail.com') {
         throw new Error('Anda tidak dapat mengakses halaman superadmin');
       }
 
-      // Sign in with Firebase
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
 
-      // Redirect based on role
       router.push(role === 'superadmin' ? '/superadmin' : '/admin');
     } catch (err) {
       console.error('Login error:', err);

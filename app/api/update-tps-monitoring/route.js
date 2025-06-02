@@ -17,10 +17,10 @@ export async function POST(request) {
       console.error('Invalid updated_by:', updated_by);
       return NextResponse.json({ error: 'updated_by is required and must be a non-empty string' }, { status: 400 });
     }
-    if (!keterangan || keterangan.trim() === '') {
-      console.error('Invalid keterangan:', keterangan);
-      return NextResponse.json({ error: 'keterangan is required and must be a non-empty string' }, { status: 400 });
-    }
+    // if (!keterangan || keterangan.trim() === '') {
+    //   console.error('Invalid keterangan:', keterangan);
+    //   return NextResponse.json({ error: 'keterangan is required and must be a non-empty string' }, { status: 400 });
+    // }
 
     const tpsRef = db.collection('tps-monitoring').doc(String(id_tps));
     const tpsDoc = await tpsRef.get();
