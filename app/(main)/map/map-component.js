@@ -789,7 +789,7 @@ function Legend({ map }) {
         <div style="
           min-width: 200px;
         ">
-          <h4 style="margin: 0 0 12px 0; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 8px;">Legend</h4>
+          <h4 style="margin: 0 0 12px 0; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 8px; color: black; ">Legend</h4>
           <div style="display: flex; flex-direction: column; gap: 8px;">
       `;
 
@@ -809,7 +809,7 @@ function Legend({ map }) {
             ">
               ${layerIcons.faskes}
             </div>
-            <span style="transform: translateY(2px);">Fasilitas Kesehatan</span>
+            <span style="color: black; transform: translateY(2px);">Fasilitas Kesehatan</span>
           </div>`;
       }
 
@@ -829,7 +829,7 @@ function Legend({ map }) {
             ">
               ${layerIcons.pemadam}
             </div>
-            <span style="transform: translateY(2px);">Pemadam Kebakaran</span>
+            <span style="color: black; transform: translateY(2px);">Pemadam Kebakaran</span>
           </div>`;
       }
 
@@ -849,7 +849,7 @@ function Legend({ map }) {
             ">
               ${layerIcons.polisi}
             </div>
-            <span style="transform: translateY(2px);">Kepolisian</span>
+            <span style="color: black; transform: translateY(2px);">Kepolisian</span>
           </div>`;
       }
 
@@ -869,7 +869,7 @@ function Legend({ map }) {
             ">
               ${layerIcons.tni}
             </div>
-            <span style="transform: translateY(2px);">TNI</span>
+            <span style="color: black; transform: translateY(2px);">TNI</span>
           </div>`;
       }
 
@@ -885,7 +885,7 @@ function Legend({ map }) {
               flex-shrink: 0;
               box-shadow: 0 0 4px rgba(0,0,0,0.3);
             "></div>
-            <span style="transform: translateY(2px);">TPS</span>
+            <span style="color: black; transform: translateY(2px);">TPS</span>
           </div>`;
       }
 
@@ -899,7 +899,7 @@ function Legend({ map }) {
               flex-shrink: 0;
               margin-top: 2px;
             "></div>
-            <span style="transform: translateY(2px);">Batas Administrasi</span>
+            <span style="color: black; transform: translateY(2px);">Batas Administrasi</span>
           </div>`;
       }
 
@@ -958,7 +958,7 @@ function SearchControl({
               type="text" 
               placeholder="Cari TPS dan Desa..." 
               class="search-input"
-              style="flex: 1;"
+              style="flex: 1; color: gray;"
             />
             <button class="clear-search-btn" style="
               padding: 8px 12px; 
@@ -967,6 +967,7 @@ function SearchControl({
               background: #f8f9fa; 
               cursor: pointer;
               font-size: 12px;
+              color: black; 
             ">Clear</button>
           </div>
           <div class="search-results" style="display: none;"></div>
