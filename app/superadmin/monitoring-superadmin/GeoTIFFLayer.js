@@ -3,11 +3,11 @@ import { useMap, useMapEvent } from "react-leaflet";
 import * as GeoTIFF from "geotiff";
 import L from "leaflet";
 
+//Geospatial Analysis
 export default function GeoTIFFLayer({ url }) {
   const map = useMap();
   const layerRef = useRef(null);
   const dataRef = useRef(null);
-  // Handle layer removal on overlay remove event
   useMapEvent('overlayremove', (e) => {
     if (e.name === 'Heatmap Kerawanan' && layerRef.current) {
       map.removeLayer(layerRef.current);
@@ -15,11 +15,9 @@ export default function GeoTIFFLayer({ url }) {
     }
   });
 
-  // Handle layer addition on overlay add event
   useMapEvent('overlayadd', async (e) => {
     if (e.name === 'Heatmap Kerawanan') {
       if (dataRef.current) {
-        // Reuse existing processed data
         if (layerRef.current) {
           layerRef.current.addTo(map);
         } else {
@@ -31,7 +29,6 @@ export default function GeoTIFFLayer({ url }) {
           layerRef.current = imageLayer;
         }
       } else {
-        // Initial load
         await loadGeoTIFF();
       }
     }
@@ -55,8 +52,8 @@ export default function GeoTIFFLayer({ url }) {
 
       const bbox = image.getBoundingBox();
       const bounds = [
-        [bbox[1], bbox[0]], // Southwest corner [lat, lng]
-        [bbox[3], bbox[2]]  // Northeast corner [lat, lng]
+        [bbox[1], bbox[0]], 
+        [bbox[3], bbox[2]]  
       ];
 
       const canvas = document.createElement("canvas");
@@ -65,15 +62,13 @@ export default function GeoTIFFLayer({ url }) {
       const ctx = canvas.getContext("2d");
       const imageData = ctx.createImageData(width, height);
 
-      // Define color ranges for vulnerability levels (0-255)
       const colorLevels = [
-        { range: 64, color: { r: 222, g: 124, b: 125 } },  // DE7C7D - Lowest
-        { range: 128, color: { r: 204, g: 43, b: 82 } },   // CC2B52
-        { range: 192, color: { r: 175, g: 23, b: 64 } },   // AF1740
-        { range: 255, color: { r: 116, g: 9, b: 56 } }     // 740938 - Highest
+        { range: 64, color: { r: 222, g: 124, b: 125 } },  
+        { range: 128, color: { r: 204, g: 43, b: 82 } },   
+        { range: 192, color: { r: 175, g: 23, b: 64 } },   
+        { range: 255, color: { r: 116, g: 9, b: 56 } }     
       ];
 
-      // Create color mapping
       for (let i = 0; i < data.length; i++) {
         const val = Math.round(data[i]);
         
@@ -100,15 +95,14 @@ export default function GeoTIFFLayer({ url }) {
 
       ctx.putImageData(imageData, 0, 0);
 
-      // Store processed data for reuse
       dataRef.current = {
         dataUrl: canvas.toDataURL(),
         bounds: bounds
-      };      // Create and add the initial layer if overlay control is checked
+      };     
       const controlContainer = document.querySelector('.leaflet-control-layers-overlays');
       const isChecked = controlContainer?.querySelector('input[type="checkbox"]:checked + span')?.textContent.trim() === 'Heatmap Kerawanan';
       
-      if (isChecked || document.querySelector('.leaflet-control-layers-overlays') === null) { // If no control exists yet, show by default
+      if (isChecked || document.querySelector('.leaflet-control-layers-overlays') === null) { 
         const imageLayer = L.imageOverlay(dataRef.current.dataUrl, bounds, {
           opacity: 0.7,
           crossOrigin: true
@@ -122,7 +116,6 @@ export default function GeoTIFFLayer({ url }) {
     }
   };
 
-  // Load GeoTIFF when component mounts
   useEffect(() => {
     loadGeoTIFF();
     return () => {

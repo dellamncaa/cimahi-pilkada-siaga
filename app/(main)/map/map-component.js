@@ -16,6 +16,7 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import layerIcons from "./layerIcons";
 
+//Geospatial Analysis
 const findNearestFacilities = (tpsCoords, geoJsonData) => {
   if (!geoJsonData || !geoJsonData.features) return {};
 
