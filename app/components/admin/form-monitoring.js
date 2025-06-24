@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import kecDesaData from "@/lib/kec-desa.json";
 
-export default function FormMonitoring({ handleReturn }) {
+export default function FormMonitoring({ handleReturn, user }) {
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [selectedDesa, setSelectedDesa] = useState("");
   const [tpsData, setTpsData] = useState([]);
@@ -13,7 +13,16 @@ export default function FormMonitoring({ handleReturn }) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBackConfirmation, setShowBackConfirmation] = useState(false);
+  
   const uniqueKecamatan = [...new Set(kecDesaData.map((item) => item.kec))];
+
+  // Set default reporter from logged in user
+  useEffect(() => {
+    if (user && user.email) {
+      setPelapor(user.email.split("@")[0]); // Use email username part
+      // Or use full email: setPelapor(user.email);
+    }
+  }, [user]);
 
   const filteredDesa = kecDesaData
     .filter((item) => item.kec === selectedKecamatan)
@@ -111,7 +120,8 @@ export default function FormMonitoring({ handleReturn }) {
       setSelectedTps([]);
       setStatusPantauan("");
       setKeterangan("");
-      setPelapor("");
+      // Reset to default user email instead of empty string
+      setPelapor(user?.email?.split("@")[0] || "");
       setShowConfirmation(false);
       alert("Data berhasil disimpan!");
     } catch (error) {
@@ -303,14 +313,33 @@ export default function FormMonitoring({ handleReturn }) {
           <label className="block mb-1 font-medium">
             Pelapor <span className="text-red-500 text-sm">*</span>
           </label>
-          <input
-            required
-            type="text"
-            value={pelapor}
-            onChange={(e) => setPelapor(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md text-sm"
-            placeholder="Masukkan informasi pelapor"
-          />
+          <div className="relative">
+            <input
+              required
+              type="text"
+              value={pelapor}
+              readOnly
+              onChange={(e) => setPelapor(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md text-sm bg-gray-50"
+              placeholder="Masukkan informasi pelapor"
+            />
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-4 h-4 text-gray-400"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-end">

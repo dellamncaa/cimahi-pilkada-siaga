@@ -738,7 +738,9 @@ window.searchNearestFacilities = function (tpsId) {
     listDiv.innerHTML = Object.entries(nearest)
       .map(([type, facility]) => {
         const iconInfo = facilityIcons[type];
-        const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${facility.coordinates[1]},${facility.coordinates[0]}`;
+        const origin = `${tpsCoords[1]},${tpsCoords[0]}`;
+        const destination = `${facility.coordinates[1]},${facility.coordinates[0]}`;
+        const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
         return `
           <div class="facility-item">
             <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
@@ -896,7 +898,7 @@ function Legend({ map }) {
             <div style="
               width: 24px;
               height: 3px;
-              background: #3388ff;
+              background: #000;
               flex-shrink: 0;
               margin-top: 2px;
             "></div>
@@ -1269,9 +1271,9 @@ export default function MapComponent() {
 
   // Style for the boundary
   const boundaryStyle = {
-    fillColor: "#3388ff",
+    fillColor: "#000",
     fillOpacity: 0.1,
-    color: "#3388ff",
+    color: "#000",
     weight: 2,
     dashArray: "5, 5",
   };

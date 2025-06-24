@@ -30,27 +30,39 @@ const Legend = () => {
       div.innerHTML = `
         <div class="legend-item">
           <div class="legend-circle" style="background-color: #ef4444;"></div>
-          <span>Butuh Bantuan</span>
+          <span style="color: black; transform: translateY(2px);">Butuh Bantuan</span>
         </div>
         <div class="legend-item">
           <div class="legend-point" style="background-color: #22c55e;"></div>
-          <span>Aman</span>
+          <span style="color: black; transform: translateY(2px);">Aman</span>
         </div>
         <div class="legend-item">
           <div class="legend-point" style="background-color: #eab308;"></div>
-          <span>Rawan</span>
+          <span style="color: black; transform: translateY(2px);">Rawan</span>
         </div>
         <div class="legend-item">
           <div class="legend-point" style="background-color: #3b82f6;"></div>
-          <span>Sudah Ditangani</span>
+          <span style="color: black; transform: translateY(2px);">Sudah Ditangani</span>
+        </div>
+        <div class="legend-item">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="
+              width: 24px;
+              height: 3px;
+              background: #000;
+              flex-shrink: 0;
+              margin-top: 2px;
+            "></div>
+            <span style="color: black; transform: translateY(2px);">Batas Administrasi</span>
+          </div>
         </div>
         <div class="legend-separator"></div>
-        <div class="legend-title">Tingkat Kerawanan</div>
+        <div class="legend-title" style="color: black; transform: translateY(2px);">Tingkat Kerawanan</div>
         <div class="legend-gradient">
           <div class="gradient-bar"></div>
           <div class="gradient-labels">
-            <span>Rendah</span>
-            <span>Tinggi</span>
+            <span style="color: black; transform: translateY(2px);">Rendah</span>
+            <span style="color: black; transform: translateY(2px);">Tinggi</span>
           </div>
         </div>
       `;
@@ -120,6 +132,15 @@ export default function Map({
       .then(setGeojson);
   }, []);
 
+    // Style for the boundary
+  const boundaryStyle = {
+    fillColor: "#000",
+    fillOpacity: 0.1,
+    color: "#000",
+    weight: 2,
+    dashArray: "5, 5",
+  };
+
   const markerCoordinates = useMemo(() => {
     return locations
       .map((location) => {
@@ -164,7 +185,7 @@ export default function Map({
         {geojson && (
           <GeoJSON
             data={geojson}
-            style={{ color: "#6366f1", weight: 2, fillOpacity: 0.08 }}
+            style={boundaryStyle}
             onEachFeature={(feature, layer) => {
               if (feature.properties) {
                 const name = feature.properties.NAMOBJ || "Wilayah Cimahi";

@@ -4,7 +4,7 @@ import FormVoting from "./form-voting";
 import FormMonitoring from "./form-monitoring";
 import FormLogistik from "./form-logistik";
 
-export default function FormSelector() {
+export default function FormSelector({ user }) {
   const [activeForm, setActiveForm] = useState(null);
 
   const handleReturn = () => {
@@ -16,16 +16,16 @@ export default function FormSelector() {
       <div>
         {activeForm === "FormVoting" && (
           <div>
-            <FormVoting handleReturn={handleReturn} />
+            <FormVoting handleReturn={handleReturn} user={user} />
           </div>
         )}
         {activeForm === "FormMonitoring" && (
           <div>
-            <FormMonitoring handleReturn={handleReturn} />
+            <FormMonitoring handleReturn={handleReturn} user={user} />
           </div>
         )}
         {activeForm === "FormLogistik" && (
-          <FormLogistik handleReturn={handleReturn} />
+          <FormLogistik handleReturn={handleReturn} user={user} />
         )}
       </div>
     );
